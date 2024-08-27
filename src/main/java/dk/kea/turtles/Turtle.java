@@ -66,4 +66,8 @@ public class Turtle {
     public void startDrawing() {
         this.isDrawing = true;
     }
+
+    public Position getPosition() {
+        return new Position(this.x, this.y);
+    }
 }

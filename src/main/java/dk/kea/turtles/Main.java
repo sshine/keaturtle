@@ -3,6 +3,7 @@ package dk.kea.turtles;
 import javax.swing.*;
 import java.awt.*;
 import java.time.Duration;
+import java.util.stream.IntStream;
 
 public class Main {
     public static int CANVAS_WIDTH = 800;
@@ -13,17 +14,7 @@ public class Main {
         TurtleCanvas canvas = setupCanvas(frame);
         Turtle bob = setupTurtle(canvas);
 
-        // TODO: Start coding here!
-
-        for (int i = 0; i < 8; i++) {
-            bob.forward(100);
-            bob.left(90 + 45);
-            bob.forward(30);
-            bob.left(90 + 45);
-            bob.forward(45);
-            bob.left(90 + 45);
-            bob.forward(30);
-        }
+        bob.forward(10);
     }
 
     public static JFrame setupFrame() {
