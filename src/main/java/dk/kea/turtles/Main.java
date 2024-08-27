@@ -3,9 +3,6 @@ package dk.kea.turtles;
 import javax.swing.*;
 import java.awt.*;
 import java.time.Duration;
-import java.awt.image.BufferedImage;
-import java.time.Duration;
-import java.awt.image.BufferedImage;
 import java.util.stream.IntStream;
 
 public class Main {
@@ -17,15 +14,7 @@ public class Main {
         TurtleCanvas canvas = setupCanvas(frame);
         Turtle bob = setupTurtle(canvas);
 
-        double bob_x = ((double) CANVAS_WIDTH) / 2;
-        double bob_y = ((double) CANVAS_HEIGHT) / 2;
-        int scale = 50;
-
-        S(bob, scale); bob.teleport(bob_x + scale / 2, bob_y, 0);
-        i(bob, scale); bob.teleport(bob_x + scale, bob_y, 0);
-        m(bob, scale); bob.teleport(bob_x + 2.5 * scale, bob_y, 0);
-        o(bob, scale); bob.teleport(bob_x + 3.5 * scale, bob_y, 0);
-        n(bob, scale);
+        simon(bob, 50);
     }
 
     public static JFrame setupFrame() {
@@ -49,6 +38,18 @@ public class Main {
         double bob_x = ((double) CANVAS_WIDTH) / 2;
         double bob_y = ((double) CANVAS_HEIGHT) / 2;
         return new Turtle(canvas, Color.WHITE, bob_speed, bob_x, bob_y);
+    }
+
+    public static void simon(Turtle bob, int scale) {
+        double bob_x = ((double) CANVAS_WIDTH) / 2;
+        double bob_y = ((double) CANVAS_HEIGHT) / 2;
+
+        simon(bob, scale);
+        S(bob, scale); bob.teleport(bob_x + scale / 2, bob_y, 0);
+        i(bob, scale); bob.teleport(bob_x + scale, bob_y, 0);
+        m(bob, scale); bob.teleport(bob_x + 2.5 * scale, bob_y, 0);
+        o(bob, scale); bob.teleport(bob_x + 3.5 * scale, bob_y, 0);
+        n(bob, scale);
     }
 
     public static void S(Turtle t, int scale) {
