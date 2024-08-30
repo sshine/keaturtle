@@ -13,7 +13,6 @@ public class Main {
         JFrame frame = setupFrame();
         TurtleCanvas canvas = setupCanvas(frame);
         Turtle bob = setupTurtle(canvas);
-
         bob.forward(10);
     }
 

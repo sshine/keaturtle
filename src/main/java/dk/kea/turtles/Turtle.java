@@ -34,7 +34,7 @@ public class Turtle {
         x += distance * Math.cos(Math.toRadians(this.angle));
         y += distance * Math.sin(Math.toRadians(this.angle));
 
-        if (this.isDrawing) {
+        if (this.isDrawing && this.canvas != null) {
             this.canvas.drawLine(this.color, (int) old_x, (int) old_y, (int) this.x, (int) this.y);
             if (this.speed.isPositive()) {
                 try {
