@@ -5,17 +5,17 @@ import java.time.Duration;
 
 public class Turtle {
     private TurtleCanvas canvas;
+    private Duration drawSpeed;
     private Color color;
-    private Duration speed;
     private double x, y, angle;
     private boolean isDrawing;
 
-    public Turtle(TurtleCanvas canvas, Color color, Duration speed, double start_x, double start_y) {
+    public Turtle(TurtleCanvas canvas, Duration drawSpeed, Color color, Position startPosition) {
         this.canvas = canvas;
+        this.drawSpeed = drawSpeed;
         this.color = color;
-        this.speed = speed;
-        this.x = start_x;
-        this.y = start_y;
+        this.x = startPosition.x();
+        this.y = startPosition.y();
         this.angle = 0;
         this.isDrawing = true;
     }
@@ -34,11 +34,13 @@ public class Turtle {
         x += distance * Math.cos(Math.toRadians(this.angle));
         y += distance * Math.sin(Math.toRadians(this.angle));
 
+        // TODO: Testing can be problematic because a canvas with a JPanel is required to exist.
+
         if (this.isDrawing && this.canvas != null) {
             this.canvas.drawLine(this.color, (int) old_x, (int) old_y, (int) this.x, (int) this.y);
-            if (this.speed.isPositive()) {
+            if (this.drawSpeed.isPositive()) {
                 try {
-                    Thread.sleep(this.speed);
+                    Thread.sleep(this.drawSpeed);
                 } catch (InterruptedException e) {
                 }
             }
@@ -55,6 +57,10 @@ public class Turtle {
         this.angle = angle;
     }
 
+    public void teleport(Position position, double angle) {
+        this.teleport(position.x(), position.y(), angle);
+    }
+
     public void color(Color color) {
         this.color = color;
     }
@@ -69,5 +75,9 @@ public class Turtle {
 
     public Position getPosition() {
         return new Position(this.x, this.y);
+    }
+
+    public double getAngle() {
+        return this.angle;
     }
 }

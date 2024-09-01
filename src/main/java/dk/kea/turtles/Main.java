@@ -3,7 +3,6 @@ package dk.kea.turtles;
 import javax.swing.*;
 import java.awt.*;
 import java.time.Duration;
-import java.util.stream.IntStream;
 
 public class Main {
     public static int CANVAS_WIDTH = 800;
@@ -13,7 +12,31 @@ public class Main {
         JFrame frame = setupFrame();
         TurtleCanvas canvas = setupCanvas(frame);
         Turtle bob = setupTurtle(canvas);
-        bob.forward(10);
+
+        Color[] colors = new Color[] {Color.WHITE, Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW };
+
+        for (int i = 0; i < colors.length; i++) {
+            bob.teleport(canvasMiddle(), 0);
+            bob.color(colors[i]);
+            hilbertCurve(bob, 10, 1, i + 1);
+        }
+    }
+
+    public static void hilbertCurve(Turtle bob, double scale, double parity, int n) {
+        if (n < 1)
+            return;
+
+        bob.left(parity * 90);
+        hilbertCurve(bob, scale, -parity, n - 1);
+        bob.forward(scale);
+        bob.right(parity * 90);
+        hilbertCurve(bob, scale, parity, n - 1);
+        bob.forward(scale);
+        hilbertCurve(bob, scale, parity, n - 1);
+        bob.right(parity * 90);
+        bob.forward(scale);
+        hilbertCurve(bob, scale, - parity, n - 1);
+        bob.left(parity * 90);
     }
 
     public static JFrame setupFrame() {
@@ -33,9 +56,14 @@ public class Main {
     }
 
     public static Turtle setupTurtle(TurtleCanvas canvas) {
-        var bob_speed = Duration.ofMillis(100);
-        double bob_x = ((double) CANVAS_WIDTH) / 2;
-        double bob_y = ((double) CANVAS_HEIGHT) / 2;
-        return new Turtle(canvas, Color.WHITE, bob_speed, bob_x, bob_y);
+        var bobSpeed = Duration.ofMillis(10);
+        var bobPosition = canvasMiddle();
+        return new Turtle(canvas, bobSpeed, Color.WHITE, bobPosition);
+    }
+
+    public static Position canvasMiddle() {
+        double middleX = ((double) CANVAS_WIDTH) / 2;
+        double middleY = ((double) CANVAS_HEIGHT) / 2;
+        return new Position(middleX, middleY);
     }
 }
