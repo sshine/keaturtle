@@ -22,8 +22,8 @@ public class TurtleTest {
     // When you don't use a @Before method, static generators are *very* convenient!
 
     public Turtle defaultTurtle() {
-        TurtleCanvas canvas = new TurtleCanvas(800, 800);
-        return new Turtle(canvas, Duration.ofMillis(10), Color.WHITE, this.origo);
+        CoordinateListCanvas canvas = new CoordinateListCanvas();
+        return new Turtle(canvas, Duration.ZERO, Color.WHITE, this.origo);
     }
 
     @Test

@@ -37,7 +37,7 @@ public class Turtle {
         // TODO: Testing can be problematic because a canvas with a JPanel is required to exist.
 
         if (this.isDrawing && this.canvas != null) {
-            this.canvas.drawLine(this.color, (int) old_x, (int) old_y, (int) this.x, (int) this.y);
+            this.canvas.drawLine(this.color, old_x, old_y, this.x, this.y);
             if (this.drawSpeed.isPositive()) {
                 try {
                     Thread.sleep(this.drawSpeed);

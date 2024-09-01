@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         JFrame frame = setupFrame();
-        TurtleCanvas canvas = setupCanvas(frame);
+        BufferedImageCanvas canvas = setupCanvas(frame);
         Turtle bob = setupTurtle(canvas);
 
         Color[] colors = new Color[] {Color.WHITE, Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW };
@@ -49,13 +49,13 @@ public class Main {
         return frame;
     }
 
-    public static TurtleCanvas setupCanvas(JFrame frame) {
-        TurtleCanvas canvas = new TurtleCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+    public static BufferedImageCanvas setupCanvas(JFrame frame) {
+        BufferedImageCanvas canvas = new BufferedImageCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
         frame.add(canvas);
         return canvas;
     }
 
-    public static Turtle setupTurtle(TurtleCanvas canvas) {
+    public static Turtle setupTurtle(BufferedImageCanvas canvas) {
         var bobSpeed = Duration.ofMillis(10);
         var bobPosition = canvasMiddle();
         return new Turtle(canvas, bobSpeed, Color.WHITE, bobPosition);
